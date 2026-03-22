@@ -9,6 +9,7 @@ void sol(){
 }
 
 int main(){
+    cout<<"xd";
     int t; cin>>t;
     while(t--){
         sol();

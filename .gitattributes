@@ -1,0 +1,9 @@
+# Trata todos los archivos como texto y normaliza a LF al hacer commit
+* text=auto
+
+# Asegura que archivos específicos siempre usen LF (ideal para scripts de bash)
+*.sh text eol=lf
+
+# Marca archivos que no deben tocarse (imágenes, ejecutables)
+*.jpg binary
+*.png binary
