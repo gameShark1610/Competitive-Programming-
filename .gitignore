@@ -1,0 +1,19 @@
+# Ignore CLion's internal project settings
+.idea/
+
+# Ignore all CMake build folders (These are the heavy ones!)
+cmake-build-*/
+
+# Ignore compiled executable files (Windows)
+*.exe
+
+# Ignore compiled executable files (Linux/Mac)
+*.out
+*.app
+
+# Ignore object files
+*.obj
+*.o
+
+# Optional: Ignore input/output text files so you don't upload huge test cases
+*.txt
