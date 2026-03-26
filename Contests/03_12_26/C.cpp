@@ -9,7 +9,7 @@ void sol(){
 }
 
 int main(){
-    cout<<"xd";
+    cout<<"xdddd";
     int t; cin>>t;
     while(t--){
         sol();
