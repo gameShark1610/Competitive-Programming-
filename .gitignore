@@ -17,3 +17,9 @@ cmake-build-*/
 
 # Optional: Ignore input/output text files so you don't upload huge test cases
 *.txt
+
+# Ignorar el ejecutable generado (si no tiene extensión)
+prueba
+# O ignorar todos los archivos sin extensión (común en Linux)
+*
+!*.*
