@@ -4,13 +4,13 @@ using namespace std;
 
 using ll = long long;
 using vi = vector<int>;
+using vll = vector<ll>;
 using pi = pair<int, int>;
 
 void solve() {
-    int n; cin>>n;
-    vi a(n);
-    vi b(n);
-    int number;
+    ll n; cin>>n;
+    vll a(n);
+    vll b(n);
     for (int i=0;i<n;i++) {
         cin>>a[i];
     }
@@ -20,9 +20,9 @@ void solve() {
     int cont=0;
 
 
-    int pre_gcdito;
-    for (int i=n-1;i>0;i--) {
-        int gcdito;
+    ll pre_gcdito;
+    for (ll i=n-1;i>0;i--) {
+        ll gcdito;
         gcdito=gcd(a[i],a[i-1]);
         if (i==n-1) {
             if (gcdito!=a[n-1]) {
@@ -30,16 +30,17 @@ void solve() {
             }
         }
         else {
-            int gcdito2;
-            gcdito2=gcd(gcdito,pre_gcdito);
-            if (gcdito==gcd(gcdito2,a[i-1]) && pre_gcdito==gcd(gcdito2,a[i+1])  && gcdito2<a[i]) cont++;
+            ll lcm;
+            lcm=gcd(gcdito,pre_gcdito);
+            lcm=(gcdito/lcm)*pre_gcdito;
+            if (lcm<a[i]) cont++;
         }
         pre_gcdito=gcdito;
 
     }
-    int gcdito;
+    ll gcdito;
     gcdito=gcd(a[0],a[1]);
-    if (gcdito<a[0]) {
+    if (gcdito!=a[0]) {
         cont++;
     }
 
