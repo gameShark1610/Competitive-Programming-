@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+using vi = vector<int>;
+using pi = pair<int, int>;
+
+void solve() {
+    int n,m,k;cin>>n>>m>>k;
+    if (n/k>=m) cout<<"Iron fist Ketil";
+    else cout<<"King Canute";
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);cin.tie(0);
+
+    int t=1;
+    //cin >> t;
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
