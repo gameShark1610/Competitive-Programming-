@@ -4,17 +4,3 @@
 4 2
 5 4
 6 2
-2450 2391
-~/Documents/Competitive-Programming- remotes/origin/HEAD*
-❯ git s
-## HEAD (no branch)
-A  Contests/Codeforces_Round_1098/A.cpp
-M  input.txt
-
-~/Documents/Competitive-Programming- remotes/origin/HEAD*
-❯ git pull
-error: cannot pull with rebase: Your index contains uncommitted changes.
-error: Please commit or stash them.
-
-~/Documents/Competitive-Programming- remotes/origin/HEAD*
-❯
