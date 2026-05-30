@@ -7,57 +7,29 @@ using vi = vector<int>;
 using pi = pair<int, int>;
 
 void solve() {
-    ll a, b;
-    cin >> a >> b;
-    ll sumTotal = 0;
-    vector<ll> c(a), nuevoGuardado;
-    for (ll i = 0; i < a; ++i) {
-        ll num;
-        cin >> num;
-        c[i] = num;
+    int n,k; cin>>n>>k;
+    vi prefixS(n+1);
+    ll sum=0;
+    prefixS[0]=0;
+    for (int i = 0; i < n; ++i) {
+        int num; cin>>num;
+        num = num%k == 0 ? 1:0;
+        prefixS[i+1]= prefixS[i]+ (num%k);
+        prefixS[i+1]%=k;
     }
-    //cout<<sumTotal;
-    int contNoD = 0, conD = 0;
-    for (int i = a - 1; i >= 0; --i) {
-        if (c[i] % b == 0) {
-            if (contNoD != 0) {
-                nuevoGuardado.push_back(contNoD);
-                sumTotal += contNoD * (contNoD + 1) / 2;
-                contNoD = 0;
-            }
-            conD--;
-            nuevoGuardado.push_back(conD);
-        } else contNoD++;
+
+    map<int,int> cont;
+    for (int num: prefixS) {
+        cont[num]++;
     }
-    if (contNoD != 0) {
-        nuevoGuardado.push_back(contNoD);
-        sumTotal += contNoD * (contNoD + 1) / 2;
+
+    for (auto num: cont) {
+
+        sum+=1ll*num.second*(num.second-1)/2;
     }
-    //for (auto xd: nuevoGuardado) cout<<xd<<" ";
 
-    //cout<<sumTotal<<" ";
-
-    for (long long i = nuevoGuardado.size() - 1; i >= 0; --i) {
-        if (nuevoGuardado[i] > 0) continue;
-        ll numCom = -1 * nuevoGuardado[i] / b;
-        sumTotal += numCom;
-        if (i != nuevoGuardado.size() - 1) {
-            if (nuevoGuardado[i+1]>0) sumTotal += numCom* (nuevoGuardado[i +1]);
-        }
-
-        if (i-b>=0) {
-            if (nuevoGuardado[i-b]>0)sumTotal += numCom* (nuevoGuardado[i - b]);
-        }
-
-        if (i-b>=0 && i!=nuevoGuardado.size()-1) {
-            if (nuevoGuardado[i-b]>0 && nuevoGuardado[i+1]>0) {
-                sumTotal += (nuevoGuardado[i +1])*(nuevoGuardado[i - b]);
-            }
-        }
-    }
-    cout << sumTotal;
+    cout<<sum;
 }
-
 
 int main() {
     ios_base::sync_with_stdio(0);
