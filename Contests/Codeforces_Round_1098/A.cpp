@@ -1,7 +1,6 @@
 //
 // Created by gameshark on 5/22/26.
 //
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -10,41 +9,33 @@ using ll = long long;
 using vi = vector<int>;
 using pi = pair<int, int>;
 
-
-
 void solve() {
-    string n; cin>>n;
-    int nleng=n.size();
-    vi prefix(nleng),sufiix(nleng);
-    prefix[0]=n[0]=='1' || n[0]=='3' ? 1:0;
-    int cont4=0;
-    if (n[0]=='4') cont4++;
-    for(int i = 1; i < nleng; ++i) {
-        if (n[i]=='4') cont4++;
-        if (n[i]=='1' || n[i]=='3') {
-            prefix[i]=prefix[i-1]+1;
-        }else prefix[i]=prefix[i-1];
+    int n; cin>>n;
+
+    vector<ll> a(n);
+    vector<ll> ans;
+    for (int i = 0; i < n; ++i) cin>>a[i];
+
+    int num=0;
+    for (int i = n-1; i >= 0; --i) {
+        if (num==0) {
+            if (a[i]>0) {
+                num++;
+                ans.push_back(i+1);
+                //cout<<i<<" ";
+            }
+        }else {
+            if ( a[i]*(pow(-1,num))>0 ) {
+                num++;
+                ans.push_back(i+1);
+            }
+        }
+        //if (a[i]*(-1*num))
     }
+    cout<<ans.size()<<'\n';
+    for (int xd: ans) cout<<xd<<" ";
 
-    sufiix[nleng-1]= n[nleng-1]=='2' ? 1:0;
-    for(int i = nleng-2; i >= 0; --i) {
-        if (n[i]=='2') {
-            sufiix[i]=sufiix[i+1]+1;
-        }else sufiix[i]=sufiix[i+1];
-    }
-    int mini=min(prefix[nleng-1],sufiix[0]);
-    for(int i = 0; i < nleng-1; ++i) {
-        mini=min(mini,prefix[i]+sufiix[i+1]);
-    }
-
-
-    //for (int num: sumas) cout<<num<<" ";
-    //cout<<"\n";
-
-    cout<<mini+cont4<<'\n';
-
-
-
+    cout<<'\n';
 }
 
 int main() {
@@ -58,4 +49,3 @@ int main() {
 
     return 0;
 }
-
