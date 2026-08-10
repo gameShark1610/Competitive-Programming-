@@ -9,44 +9,50 @@ using ll = long long;
 using vi = vector<int>;
 using pi = pair<int, int>;
 
-void solve() {
-    int n;cin>>n;
-    string xd; cin>>xd;
-    int i=0, j=n-1;
-    int cont=0;
-    while (i<j) {
-        //encontramos el G mas cercano
-        if (xd[i]=='G') {
-            cont++;
-            i++;
-        }else {
-            //encontramos una g
-            if (xd[j]=='S')
-                while (j>i) {
-                    if (xd[j]=='G') break;
-                    else j--;
-                }
-            if (xd[j]=='G') {
-                swap(xd[i],xd[j]);
-                cont++;
-                i++;
-                j--;
-            }
-        }
-    }
-    if (xd[i]=='G') cont++;
-    cout<<cont<<'\n';
+int checar(ll &limitIzq, ll &limitDer, ll &nuevoLimizq, ll &nuevoLimDer) {
+  if (nuevoLimDer < limitDer) {
+    return 0;
+  }
+  if (nuevoLimizq > limitDer) {
+    return 0;
+  }
+  limitIzq = nuevoLimizq > limitIzq ? nuevoLimizq : limitIzq;
+  limitDer = nuevoLimDer < limitDer ? nuevoLimDer : limitDer;
+  return 1;
+}
 
+void solve() {
+  int n;
+  cin >> n;
+  vector<ll> nums(n);
+  ll limitIzq = INT_MAX, limitDer = INT_MAX;
+  for (int i = 0; i < n; i++)
+    cin >> nums[i];
+  ll maxi = 0;
+  for (int i = 1; i < n; i++) {
+    maxi = max(maxi, nums[i - 1] - nums[i]);
+  }
+  for (int i = 1; i < n; i++) {
+    if (nums[i] < nums[i - 1]) {
+      nums[i] += maxi;
+    }
+  }
+
+  if (is_sorted(nums.begin(), nums.end())) {
+    cout << "YES\n";
+  } else
+    cout << "NO\n";
 }
 
 int main() {
-    ios_base::sync_with_stdio(false);cin.tie(nullptr);
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
 
-    int t=1;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+  int t = 1;
+  cin >> t;
+  while (t--) {
+    solve();
+  }
 
-    return 0;
+  return 0;
 }
